@@ -12,9 +12,6 @@
     "withastro",
     "astro-integration"
   ],
-  "scripts": {
-    "postinstall": "node scripts/postinstall.mjs"
-  },
   "dependencies": {
     "vite-plugin-electron": "^0.28.0"
   },

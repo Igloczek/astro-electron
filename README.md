@@ -18,9 +18,7 @@ npm install astro-electron electron --save
 
 Upon installation, it will automatically set up the initial Electron files (`main.ts` and `preload.ts`) in the `src/electron` directory of your Astro project.
 
-## Usage
-
-After installing `astro-electron`, include the integration in your Astro configuration.
+## Setup
 
 ### Update `astro.config.js`
 
@@ -33,6 +31,51 @@ import electron from "astro-electron";
 export default defineConfig({
   integrations: [electron()],
 });
+```
+
+### Update `package.json`
+
+Modify your `package.json` to include the following scripts:
+
+```json
+{
+  "main": "dist-electron/main.js"
+}
+```
+
+### Update `.gitignore`
+
+```
+# Electron
+/dist-electron
+```
+
+### Electron main and preload files
+
+Crete directory `src/electron` and add `main.ts` and `preload.ts` files.
+
+```typescript
+// src/electron/main.ts
+import { app, BrowserWindow } from "electron";
+
+app.whenReady().then(() => {
+  const win = new BrowserWindow({
+    title: "Main window",
+  });
+
+  // You can use `process.env.VITE_DEV_SERVER_URL` when the vite command is called `serve`
+  if (process.env.VITE_DEV_SERVER_URL) {
+    win.loadURL(process.env.VITE_DEV_SERVER_URL);
+  } else {
+    // Load your file
+    win.loadFile("dist/index.html");
+  }
+});
+```
+
+```typescript
+// src/electron/preload.ts
+console.log("preload.ts");
 ```
 
 ### Customizing Electron Configuration
