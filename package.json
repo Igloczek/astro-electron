@@ -7,7 +7,7 @@
   "author": "Bartek Igielski",
   "type": "module",
   "main": "src/integration.js",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "keywords": [
     "withastro",
     "astro-integration"
