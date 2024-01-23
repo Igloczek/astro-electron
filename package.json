@@ -13,7 +13,13 @@
     "astro-integration"
   ],
   "dependencies": {
-    "vite-plugin-electron": "^0.28.0"
+    "vite-plugin-electron": "^0.28.0",
+    "@electron-forge/cli": "^7.2.0",
+    "@electron-forge/maker-deb": "^7.2.0",
+    "@electron-forge/maker-rpm": "^7.2.0",
+    "@electron-forge/maker-squirrel": "^7.2.0",
+    "@electron-forge/maker-zip": "^7.2.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.2.0"
   },
   "peerDependencies": {
     "astro": "^4.0.0",

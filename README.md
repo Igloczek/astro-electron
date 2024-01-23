@@ -14,11 +14,15 @@ To install `astro-electron`, run the following command in your Astro project:
 
 ```bash
 npm install astro-electron electron --save
+
+yarn add astro-electron electron
+
+pnpm add astro-electron electron
 ```
 
-Upon installation, it will automatically set up the initial Electron files (`main.ts` and `preload.ts`) in the `src/electron` directory of your Astro project.
-
 ## Setup
+
+App won't run in Electron without some additional setup. Follow the steps below to get started.
 
 ### Update `astro.config.js`
 
@@ -35,8 +39,6 @@ export default defineConfig({
 
 ### Update `package.json`
 
-Modify your `package.json` to include the following scripts:
-
 ```json
 {
   "main": "dist-electron/main.js"
@@ -47,12 +49,14 @@ Modify your `package.json` to include the following scripts:
 
 ```
 # Electron
-/dist-electron
+dist-electron/
 ```
 
 ### Electron main and preload files
 
 Crete directory `src/electron` and add `main.ts` and `preload.ts` files.
+
+Please note this is just an minimal example, refer to Electron docs for more information.
 
 ```typescript
 // src/electron/main.ts
@@ -102,10 +106,9 @@ export default defineConfig({
 
 For more information on the available configuration options, refer to the [vite-plugin-electron docs](https://github.com/electron-vite/vite-plugin-electron).
 
-## Important Notes
+## Building and publishing your Electron app
 
-- During installation, `astro-electron` modifies your `package.json` and `.gitignore` files to include configurations necessary for Electron.
-- Ensure that `electron` and `astro` packages are present dependencies to guarantee compatibility.
+This integration does not include any build or publish, it's up to you to choose the best option for your project, but we recommend using [Electron Forge](https://www.electronforge.io/).
 
 ## License
 
