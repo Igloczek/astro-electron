@@ -1,55 +1,55 @@
-const fs = require("fs");
-const path = require("path");
+import fs from "fs/promises";
+import path from "path";
 
-function copyTemplateFiles() {
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
+
+async function copyTemplateFiles() {
   const templateDir = path.join(__dirname, "templates");
   const targetDir = path.join(process.cwd(), "src", "electron");
 
   try {
-    if (!fs.existsSync(targetDir)) {
-      fs.mkdirSync(targetDir, { recursive: true });
-    }
+    await fs.mkdir(targetDir, { recursive: true });
 
     const filesToCopy = ["main.ts", "preload.ts"];
-    filesToCopy.forEach((file) => {
+    for (const file of filesToCopy) {
       const src = path.join(templateDir, file);
       const dest = path.join(targetDir, file);
 
-      if (!fs.existsSync(dest)) {
-        fs.copyFileSync(src, dest);
+      if (!(await fileExists(dest))) {
+        await fs.copyFile(src, dest);
       }
-    });
+    }
   } catch (error) {
     console.error("Error copying template files:", error);
   }
 }
 
-function updatePackageJson() {
+async function updatePackageJson() {
   const packageJsonPath = path.join(process.cwd(), "package.json");
 
   try {
-    const packageJsonData = fs.readFileSync(packageJsonPath, "utf8");
+    const packageJsonData = await fs.readFile(packageJsonPath, "utf8");
     const packageJson = JSON.parse(packageJsonData);
 
     packageJson.main = "dist-electron/main.js";
-    fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
+    await fs.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2));
   } catch (error) {
     console.error("Error updating package.json:", error);
   }
 }
 
-function updateGitignore() {
+async function updateGitignore() {
   const gitignorePath = path.join(process.cwd(), ".gitignore");
 
   try {
     let gitignoreContent = "";
 
-    if (fs.existsSync(gitignorePath)) {
-      gitignoreContent = fs.readFileSync(gitignorePath, "utf8");
+    if (await fileExists(gitignorePath)) {
+      gitignoreContent = await fs.readFile(gitignorePath, "utf8");
     }
 
     if (!gitignoreContent.includes("dist-electron/")) {
-      fs.appendFileSync(
+      await fs.appendFile(
         gitignorePath,
         "\n# Added by astro-electron-integration\n/dist-electron/\n"
       );
@@ -59,7 +59,15 @@ function updateGitignore() {
   }
 }
 
-// Run the functions
-copyTemplateFiles();
-updatePackageJson();
-updateGitignore();
+async function fileExists(filePath) {
+  try {
+    await fs.access(filePath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+await copyTemplateFiles();
+await updatePackageJson();
+await updateGitignore();

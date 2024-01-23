@@ -2,12 +2,12 @@
   "name": "astro-electron",
   "type": "module",
   "main": "src/integration.js",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "keywords": [
     "astro-integration"
   ],
   "scripts": {
-    "postinstall": "scripts/postinstall.cjs"
+    "postinstall": "node scripts/postinstall.mjs"
   },
   "dependencies": {
     "vite-plugin-electron": "^0.28.0"
