@@ -1,0 +1,18 @@
+{
+  "name": "astro-electron",
+  "main": "src/integration.js",
+  "version": "0.1.0",
+  "keywords": [
+    "astro-integration"
+  ],
+  "scripts": {
+    "postinstall": "scripts/postinstall.js"
+  },
+  "dependencies": {
+    "vite-plugin-electron": "^0.28.0"
+  },
+  "peerDependencies": {
+    "astro": "^4.0.0",
+    "electron": "^28.0.0"
+  }
+}
