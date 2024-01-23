@@ -1,6 +1,8 @@
 import fs from "fs/promises";
 import path from "path";
 
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
+
 async function copyTemplateFiles() {
   const templateDir = path.join(__dirname, "templates");
   const targetDir = path.join(process.cwd(), "src", "electron");
