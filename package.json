@@ -1,9 +1,15 @@
 {
   "name": "astro-electron",
+  "description": "Build cross-platform desktop apps with Electron and Astro",
+  "repository": "github:igloczek/astro-electron",
+  "homepage": "https://github.com/Igloczek/astro-electron",
+  "license": "MIT",
+  "author": "Bartek Igielski",
   "type": "module",
   "main": "src/integration.js",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "keywords": [
+    "withastro",
     "astro-integration"
   ],
   "scripts": {
