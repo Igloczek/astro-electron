@@ -1,7 +1,8 @@
 {
   "name": "astro-electron",
+  "type": "module",
   "main": "src/integration.js",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "keywords": [
     "astro-integration"
   ],
