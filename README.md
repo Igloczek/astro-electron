@@ -60,16 +60,26 @@ Please note this is just an minimal example, refer to Electron docs for more inf
 
 ```typescript
 // src/electron/main.ts
+import * as url from "url";
+import path from "path";
+
 import { app, BrowserWindow } from "electron";
+import "./api";
+
+const root = url.fileURLToPath(new URL(".", import.meta.url));
 
 app.whenReady().then(() => {
   const win = new BrowserWindow({
     title: "Main window",
+    webPreferences: {
+      preload: path.join(root, "preload.mjs"),
+    },
   });
 
   // You can use `process.env.VITE_DEV_SERVER_URL` when the vite command is called `serve`
   if (process.env.VITE_DEV_SERVER_URL) {
     win.loadURL(process.env.VITE_DEV_SERVER_URL);
+    win.webContents.openDevTools();
   } else {
     // Load your file
     win.loadFile("dist/index.html");
