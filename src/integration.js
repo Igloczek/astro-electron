@@ -1,9 +1,9 @@
 import vitePluginElectron from "vite-plugin-electron/simple";
 
-export default () => ({
+export default (config) => ({
   name: "astro-electron",
   hooks: {
-    "astro:config:setup": ({ config, updateConfig }) => {
+    "astro:config:setup": ({ updateConfig }) => {
       // Add Vite plugin for Electron
       updateConfig({
         vite: {
