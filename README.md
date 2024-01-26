@@ -61,18 +61,13 @@ Please note this is just an minimal example, refer to Electron docs for more inf
 ```typescript
 // src/electron/main.ts
 import * as url from "url";
-import path from "path";
-
 import { app, BrowserWindow } from "electron";
-import "./api";
-
-const root = url.fileURLToPath(new URL(".", import.meta.url));
 
 app.whenReady().then(() => {
   const win = new BrowserWindow({
     title: "Main window",
     webPreferences: {
-      preload: path.join(root, "preload.mjs"),
+      preload: url.fileURLToPath(new URL("preload.mjs", import.meta.url)),
     },
   });
 
@@ -102,9 +97,11 @@ export default defineConfig({
     astroElectron({
       main: {
         entry: "src/electron/main.ts", // Path to your Electron main file
+        vite: {}, // Vite-specific configurations (by default we use the same config as your Astro project)
       },
       preload: {
         input: "src/electron/preload.ts", // Path to your Electron preload file
+        vite: {}, // Vite-specific configurations (by default we use the same config as your Astro project)
       },
       renderer: {
         // Renderer-specific configurations (if needed)
