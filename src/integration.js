@@ -16,13 +16,15 @@ export default (integrationConfig) => ({
         vite: {
           plugins: [
             vitePluginElectron({
-              main: integrationConfig?.main || {
-                entry: "src/electron/main.ts",
-                vite: config.vite,
+              main: {
+                entry: integrationConfig?.main?.entry || "src/electron/main.ts",
+                vite: integrationConfig?.main?.vite || config.vite,
               },
-              preload: integrationConfig?.preload || {
-                input: "src/electron/preload.ts",
-                vite: config.vite,
+              preload: {
+                input:
+                  integrationConfig?.preload?.input ||
+                  "src/electron/preload.ts",
+                vite: integrationConfig?.preload?.vite || config.vite,
               },
               renderer: integrationConfig?.renderer || undefined,
             }),
