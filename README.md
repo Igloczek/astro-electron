@@ -113,6 +113,11 @@ export default defineConfig({
 
 For more information on the available configuration options, refer to the [vite-plugin-electron docs](https://github.com/electron-vite/vite-plugin-electron).
 
+## Static assets
+
+Most likely you app gonna need some static assets like fonts, videos etc. (for images you should use `Image` from `astro:assets`)
+To make them available in Electron you need to explicitly use `/public` directory in your paths, against what you would do in a regular Astro project.
+
 ## Building and publishing your Electron app
 
 This integration does not include any build or publish, it's up to you to choose the best option for your project, but we recommend using [Electron Forge](https://www.electronforge.io/).
