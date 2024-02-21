@@ -1,4 +1,5 @@
 import fs from "fs/promises";
+import path from "path";
 import vitePluginElectron from "vite-plugin-electron/simple";
 
 export default (integrationConfig) => ({
