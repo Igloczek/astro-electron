@@ -10,7 +10,7 @@ Astro-Electron is an integration designed to seamlessly incorporate Electron int
 
 ## Installation
 
-To install `astro-electron`, run the following command in your Astro project:
+To install `astro-electron`, run one of the following commands in your Astro project, depending on which package manager you're using:
 
 ```bash
 npm install astro-electron electron --save
@@ -22,9 +22,9 @@ pnpm add astro-electron electron
 
 ## Setup
 
-App won't run in Electron without some additional setup. Follow the steps below to get started.
+Your app won't run in Electron without some additional setup. Follow the steps below to get started.
 
-### Update `astro.config.js`
+### Add integration
 
 Modify your `astro.config.js` to include the `astro-electron` integration:
 
@@ -37,7 +37,9 @@ export default defineConfig({
 });
 ```
 
-### Update `package.json`
+### Define entry point
+
+Modify your `package.json` to include an entrypoint:
 
 ```json
 {
@@ -47,16 +49,17 @@ export default defineConfig({
 
 ### Update `.gitignore`
 
+Add the `dist-electron` directory to your `.gitignore` file:
 ```
 # Electron
 dist-electron/
 ```
 
-### Electron main and preload files
+### Create electron scripts
 
-Crete directory `src/electron` and add `main.ts` and `preload.ts` files.
+Create the `src/electron` directory and add the required `main.ts` file and the optional `preload.ts` file.
 
-Please note this is just an minimal example, refer to Electron docs for more information.
+Please note this is just an minimal example, refer to [Electron docs](https://www.electronjs.org/docs/latest) for more information.
 
 ```typescript
 // src/electron/main.ts
@@ -87,7 +90,7 @@ app.whenReady().then(() => {
 console.log("preload.ts");
 ```
 
-### Customizing Electron Configuration
+## Customizing Electron Configuration
 
 `astro-electron` allows for customization of the Electron setup. You can pass specific configuration options to tailor the integration to your project's needs:
 
@@ -115,12 +118,12 @@ For more information on the available configuration options, refer to the [vite-
 
 ## Static assets
 
-Most likely you app gonna need some static assets like fonts, videos etc. (for images you should use `Image` from `astro:assets`)
-To make them available in Electron you need to explicitly use `/public` directory in your paths, against what you would do in a regular Astro project.
+Your app will most likely need some static assets like fonts, videos etc. (for images you should use `Image` from `astro:assets`)
+To make them available in Electron you need to explicitly use a `/public` directory in your paths, unlike in a regular Astro project.
 
 ## Building and publishing your Electron app
 
-This integration does not include any build or publish, it's up to you to choose the best option for your project, but we recommend using [Electron Forge](https://www.electronforge.io/).
+This integration does not include any building or publishing functionality, it's up to you to choose the best option for your project, but we recommend using [Electron Forge](https://www.electronforge.io/).
 
 ## License
 
