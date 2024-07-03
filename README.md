@@ -97,7 +97,7 @@ console.log("preload.ts");
 ```javascript
 export default defineConfig({
   integrations: [
-    astroElectron({
+    electron({
       main: {
         entry: "src/electron/main.ts", // Path to your Electron main file
         vite: {}, // Vite-specific configurations (by default we use the same config as your Astro project)
