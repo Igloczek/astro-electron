@@ -25,7 +25,6 @@
     }
   },
   "dependencies": {
-    "astro-electron": "file:",
     "vite-plugin-electron": "^0.28.0"
   },
   "peerDependencies": {
