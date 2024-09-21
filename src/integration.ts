@@ -32,7 +32,7 @@ export const integration = (
     }) => {
       if (command === 'build') {
         updateConfig({
-          base: '/',
+          base: '/astro-electron',
         });
       }
 
