@@ -6,7 +6,6 @@
   "license": "MIT",
   "author": "Bartek Igielski",
   "type": "module",
-  "main": "src/integration.js",
   "version": "0.3.2",
   "keywords": [
     "withastro",
