@@ -1,4 +1,5 @@
 {
+  "version": "0.3.3",
   "name": "astro-electron",
   "description": "Build cross-platform desktop apps with Electron and Astro",
   "repository": "github:igloczek/astro-electron",
@@ -7,7 +8,6 @@
   "author": "Bartek Igielski",
   "type": "module",
   "main": "src/integration.js",
-  "version": "0.3.2",
   "keywords": [
     "withastro",
     "astro-integration"
