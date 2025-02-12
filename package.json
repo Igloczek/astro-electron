@@ -1,5 +1,5 @@
 {
-  "version": "0.3.2",
+  "version": "0.3.4",
   "name": "astro-electron",
   "description": "Build cross-platform desktop apps with Electron and Astro",
   "repository": "github:igloczek/astro-electron",
