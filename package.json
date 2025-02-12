@@ -1,5 +1,5 @@
 {
-  "version": "0.3.4",
+  "version": "0.4.0",
   "name": "astro-electron",
   "description": "Build cross-platform desktop apps with Electron and Astro",
   "repository": "github:igloczek/astro-electron",
@@ -13,7 +13,7 @@
     "astro-integration"
   ],
   "dependencies": {
-    "vite-plugin-electron": "^0.28.0"
+    "vite-plugin-electron": "^0.29.0"
   },
   "peerDependencies": {
     "astro": ">=4.0.0",

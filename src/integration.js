@@ -15,6 +15,7 @@ export default (integrationConfig) => ({
       // Add Vite plugin for Electron
       updateConfig({
         vite: {
+          envPrefix: ["VITE_", "PUBLIC_", ...(config.vite?.envPrefix || [])],
           plugins: [
             vitePluginElectron({
               main: {
