@@ -50,6 +50,7 @@ Modify your `package.json` to include an entrypoint:
 ### Update `.gitignore`
 
 Add the `dist-electron` directory to your `.gitignore` file:
+
 ```
 # Electron
 dist-electron/
@@ -66,7 +67,7 @@ Please note this is just an minimal example, refer to [Electron docs](https://ww
 import * as url from "url";
 import { app, BrowserWindow } from "electron";
 
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
   const win = new BrowserWindow({
     title: "Main window",
     webPreferences: {
@@ -76,11 +77,11 @@ app.whenReady().then(() => {
 
   // You can use `process.env.VITE_DEV_SERVER_URL` when the vite command is called `serve`
   if (process.env.VITE_DEV_SERVER_URL) {
-    win.loadURL(process.env.VITE_DEV_SERVER_URL);
+    await win.loadURL(process.env.VITE_DEV_SERVER_URL);
     win.webContents.openDevTools();
   } else {
     // Load your file
-    win.loadFile("dist/index.html");
+    await win.loadFile("dist/index.html");
   }
 });
 ```
