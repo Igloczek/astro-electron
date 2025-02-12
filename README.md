@@ -10,15 +10,11 @@ Astro-Electron is an integration designed to seamlessly incorporate Electron int
 
 ## Installation
 
-To install `astro-electron`, run one of the following commands in your Astro project, depending on which package manager you're using:
-
 ```bash
-npm install astro-electron electron --save
-
-yarn add astro-electron electron
-
-pnpm add astro-electron electron
+npm add astro-electron electron
 ```
+
+> Electron doesn't really work with anything other than npm or Yarn Classic, so if you're pnpm user, I feel you, but there is not much you can do about it, just say hi to your old friend npm, you are going to spend a lot of time together 😅
 
 ## Setup
 
