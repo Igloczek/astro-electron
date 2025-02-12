@@ -13,7 +13,7 @@
     "astro-integration"
   ],
   "dependencies": {
-    "vite-plugin-electron": "^0.29.0"
+    "vite-plugin-electron": "^0.28.0"
   },
   "peerDependencies": {
     "astro": ">=4.0.0",
