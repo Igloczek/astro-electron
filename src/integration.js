@@ -35,14 +35,16 @@ export default (integrationConfig) => ({
       });
     },
     "astro:build:done": async ({ dir, routes }) => {
+      const distURLs = routes.flatMap((route) => route?.distURL);
+
       await Promise.all(
-        routes.map(async (route) => {
-          const file = await fs.readFile(route.distURL, "utf-8");
-          const localDir = path.dirname(route.distURL.pathname);
+        distURLs.map(async (url) => {
+          const file = await fs.readFile(url, "utf-8");
+          const localDir = path.dirname(url.pathname);
           const relativePath = path.relative(localDir, dir.pathname);
 
           await fs.writeFile(
-            route.distURL,
+            url,
             file.replaceAll(/\/(astro-electron|public)/g, relativePath || ".")
           );
         })
