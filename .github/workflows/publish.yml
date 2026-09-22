@@ -34,6 +34,11 @@ jobs:
           node --version
           npm --version
 
+      - name: Verify OIDC context
+        run: |
+          test -n "$ACTIONS_ID_TOKEN_REQUEST_URL"
+          test -n "$ACTIONS_ID_TOKEN_REQUEST_TOKEN"
+
       - name: Install dependencies
         run: npm install --ignore-scripts --no-audit --no-fund
 
@@ -64,4 +69,4 @@ jobs:
           fi
 
       - name: Publish package
-        run: npm publish
+        run: npm publish --provenance --loglevel verbose
