@@ -1,0 +1,58 @@
+name: Publish to npm
+
+on:
+  push:
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+"
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: npm-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+
+      - name: Install dependencies
+        run: npm install --ignore-scripts --no-audit --no-fund
+
+      - name: Build package
+        run: npm run build --if-present
+
+      - name: Validate package
+        run: |
+          node --check src/integration.js
+          npm pack --dry-run
+
+      - name: Ensure version is unpublished
+        run: |
+          PACKAGE_NAME="$(node -p "require('./package.json').name")"
+          PACKAGE_VERSION="$(node -p "require('./package.json').version")"
+          TAG_VERSION="${GITHUB_REF_NAME}"
+          if [[ ! "${TAG_VERSION}" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+            echo "::error::Tag ${TAG_VERSION} must be MAJOR.MINOR.PATCH with no prefix or suffix."
+            exit 1
+          fi
+          if [ "${TAG_VERSION}" != "${PACKAGE_VERSION}" ]; then
+            echo "::error::Tag ${TAG_VERSION} does not match package.json version ${PACKAGE_VERSION}."
+            exit 1
+          fi
+          if npm view "${PACKAGE_NAME}@${PACKAGE_VERSION}" version >/dev/null 2>&1; then
+            echo "::error::${PACKAGE_NAME}@${PACKAGE_VERSION} is already published; bump package.json before merging."
+            exit 1
+          fi
+
+      - name: Publish package
+        run: npm publish
