@@ -23,7 +23,6 @@ jobs:
         with:
           node-version: "26"
           check-latest: true
-          registry-url: https://registry.npmjs.org
           package-manager-cache: false
 
       - name: Check toolchain
