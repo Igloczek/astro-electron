@@ -20,12 +20,14 @@ export default (integrationConfig) => ({
             vitePluginElectron({
               main: {
                 entry: integrationConfig?.main?.entry || "src/electron/main.ts",
+                onstart: integrationConfig?.main?.onstart,
                 vite: integrationConfig?.main?.vite || config.vite,
               },
               preload: {
                 input:
                   integrationConfig?.preload?.input ||
                   "src/electron/preload.ts",
+                onstart: integrationConfig?.preload?.onstart,
                 vite: integrationConfig?.preload?.vite || config.vite,
               },
               renderer: integrationConfig?.renderer || undefined,

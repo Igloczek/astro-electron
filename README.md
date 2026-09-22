@@ -97,10 +97,12 @@ export default defineConfig({
     electron({
       main: {
         entry: "src/electron/main.ts", // Path to your Electron main file
+        onstart: ({ startup }) => startup(), // Optional startup/reload callback
         vite: {}, // Vite-specific configurations (by default we use the same config as your Astro project)
       },
       preload: {
         input: "src/electron/preload.ts", // Path to your Electron preload file
+        onstart: ({ startup }) => startup(), // Optional startup/reload callback
         vite: {}, // Vite-specific configurations (by default we use the same config as your Astro project)
       },
       renderer: {
