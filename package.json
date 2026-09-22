@@ -8,6 +8,9 @@
   "author": "Bartek Igielski",
   "type": "module",
   "main": "src/integration.js",
+  "files": [
+    "src"
+  ],
   "keywords": [
     "withastro",
     "astro-integration"
