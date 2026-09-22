@@ -25,6 +25,11 @@ jobs:
           registry-url: https://registry.npmjs.org
           package-manager-cache: false
 
+      - name: Update npm
+        run: |
+          npm install --global npm@latest
+          npm --version
+
       - name: Install dependencies
         run: npm install --ignore-scripts --no-audit --no-fund
 
