@@ -2,7 +2,10 @@
   "version": "0.6.0",
   "name": "astro-electron",
   "description": "Build cross-platform desktop apps with Electron and Astro",
-  "repository": "github:igloczek/astro-electron",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Igloczek/astro-electron.git"
+  },
   "homepage": "https://github.com/Igloczek/astro-electron",
   "license": "MIT",
   "author": "Bartek Igielski",
