@@ -23,7 +23,11 @@ jobs:
         with:
           node-version: "26"
           check-latest: true
+          registry-url: https://registry.npmjs.org
           package-manager-cache: false
+
+      - name: Remove empty npm token
+        run: sed -i '/_authToken/d' "$NPM_CONFIG_USERCONFIG"
 
       - name: Check toolchain
         run: |
