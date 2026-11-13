@@ -1,5 +1,5 @@
 {
-  "version": "0.6.0",
+  "version": "0.6.1",
   "name": "astro-electron",
   "description": "Build cross-platform desktop apps with Electron and Astro",
   "repository": {
@@ -16,7 +16,10 @@
   ],
   "keywords": [
     "withastro",
-    "astro-integration"
+    "astro-integration",
+    "tooling",
+    "electron",
+    "desktop"
   ],
   "dependencies": {
     "vite-plugin-electron": "^0.29.0"
